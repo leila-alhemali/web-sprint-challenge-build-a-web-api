@@ -147,7 +147,22 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+
+Node and Express are used to communicate with the database. They are both light weight (not much set up required) programs that integrate easily with React. They provide the power to fetch data so it does not all have to be stored in the app itself.
+
 1. Understand and explain the use of Middleware.
+
+Middleware provide a series of checks for the backend. They create more dry code. The programmer can call a middleware function in multiple api routes so the same code doesn't have to be rewritten. Middleware are functions have are chained together to handle requests.
+
 1. The basic principles of the REST architectural style.
+
+The rest architectural style is the http requests and responses that happen between the client and server. It is the protocol that gets used to transmit information to and from the database. These are the CRUD api's that we use.
+
 1. Understand and explain the use of Express Routers.
+
+Express Routers move the api routes out of the server file. This makes code more readable. A router contains all of the api routes that get information from a specific database.
+
 1. Describe tooling used to manually test the correctness of an API.
+
+We have used two tools to manually test API's. Postman and HTTPie let the user hit the api route with a request and get a response. The user has to carefully input the route and payload. They can also make incorrect requests to make sure the error messages are right. 
+
