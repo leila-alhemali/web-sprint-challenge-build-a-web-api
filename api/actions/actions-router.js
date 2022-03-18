@@ -1,4 +1,5 @@
 // Write your "actions" router here!
+const {checkActionPayload } = require('./actions-middlware')
 const express = require('express');
 
 const Action = require("./actions-model")
@@ -26,29 +27,20 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', checkActionPayload, (req, res) => {
     Action.insert(req.body)
     .then((action) => {
-        console.log(action)
-        if (!req.body.description || !req.body.notes || !req.body.project_id) {
-            res.status(400).json({message: "Description, project ID and notes are required"})
-        } else {
             res.status(200).json(action)
-        }
     })
     .catch(() => {
         res.status(500).json({message: "Can not post"})
     })
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkActionPayload, async (req, res) => {
     try {
         const updatedAction = await Action.update(req.params.id, req.body)
-        if (!req.body.description || !req.body.notes || !req.body.project_id) {
-            res.status(400).json({message: "Description, project ID and notes are required"})
-        } else {
             res.status(200).json(updatedAction)
-        }
     } catch (err) {
         res.status(500).json({ message: "Can not update"})
     }
@@ -60,7 +52,7 @@ router.delete('/:id', async (req, res) => {
         const result = await Action.remove(req.params.id)
         res.json(result)
     } catch (err) {
-        res.status(500).json({ message: "Can not delete"})
+         res.status(500).json({ message: "Can not update"})
     }    
 })
 
